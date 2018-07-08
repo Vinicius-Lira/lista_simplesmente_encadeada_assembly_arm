@@ -55,16 +55,16 @@ menu:
 	add r5, r5,r1
 	add r9, r9,#1
 
-	cmp r1, #1
+	cmp r1, #0x031
 	beq novo_produto
 
-	cmp r1, #2
+	cmp r1, #0x32
 	beq excluir_produto
 
-	cmp r1, #3
+	cmp r1, #0x033
 	beq listar_produtos
 
-	cmp r1, #0
+	cmp r1, #0x034
 	beq sair
 
 inicializa_novo_nodo:
@@ -126,8 +126,8 @@ novo_produto:
   svc 0x055
   add r6, r6, #1
 
-	cmp r6, #2
-	@beq sair
+	cmp r6, #1
+	beq main
 	blt novo_produto
 
 	b listar_produtos
@@ -169,8 +169,6 @@ imprimir:
 	svc 0x055
 
 	add r8, r8, #tamanho_nodo
-
-	b sair
 
 	add r9, r9, #1
 
